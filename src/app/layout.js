@@ -1,19 +1,6 @@
-import localFont from "next/font/local";
-import "./globals.css";
+// src/app/layout.js
+import './globals.css';
 import Head from 'next/head';
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-
 
 export default function RootLayout({ children }) {
   return (
@@ -21,7 +8,11 @@ export default function RootLayout({ children }) {
       <Head>
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap"
         />
       </Head>
       <body>

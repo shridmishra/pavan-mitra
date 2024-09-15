@@ -1,6 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+.font-yatra {
+  font-family: 'Yatra One', sans-serif;
+}
+
+.font-protest {
+  font-family: 'Protest Guerrilla', sans-serif;
+}
+
 
 @layer utilities {
   .border-border {

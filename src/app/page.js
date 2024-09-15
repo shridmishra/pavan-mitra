@@ -4,9 +4,10 @@ import { CityCard } from "@/components/CityCard";
 
 export default function Home() {
   return (
-    <div className="bg-black font-sans">
-      <Header/>
+    <div className="bg-black ">
+      <Header />
       <CityCard />
+
     </div>
   );
 }
