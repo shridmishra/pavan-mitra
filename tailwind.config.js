@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["class"], // Enable dark mode based on class
   content: [
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -18,7 +17,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Add Poppins as the primary sans font
+        yatra: ['Yatra One', 'sans-serif'],
+        protest: ['"Protest Guerrilla"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,6 +54,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'light-green': '#90EE90', // Add your light green color
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -19,11 +18,15 @@ export const Header = () => {
 
   const textOpacity = Math.min(1, scrollY / 300);
   const textPosition = Math.min(scrollY / 1.5, 150);
-
-  
+  const bgColor = textOpacity === 1 ? "bg-green-500" : "bg-white";
 
   return (
-    <div className="relative h-screen bg-slate-900">
+    <div className={`relative h-screen transition-colors duration-500 ${bgColor}`}>
+      <div className="text-8xl z-20 p-4 opacity-1 flex justify-between font-mono">
+        <div>Clearing <br />The <br /> Smoke</div>
+        <div className="mt-5">With <br />Data.</div>
+      </div>
+
       <img
         src="/smoke.png"
         alt="Smoke"
@@ -31,30 +34,24 @@ export const Header = () => {
         style={{
           opacity: 1 - textOpacity,
           transform: "rotate(180deg)",
+          filter: "invert(1)",
         }}
       />
+
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-white font-bold"
+        className="absolute inset-0 flex flex-col items-center justify-center font-bold"
         style={{
           opacity: textOpacity,
           transform: `translateY(${textPosition}px)`,
           zIndex: 5,
-          fontFamily: "'Poppins', sans-serif",
-          textShadow: "4px 4px 10px rgba(0, 0, 0, 0.8)",
+         
           transition: "opacity 0.3s ease, transform 0.3s ease",
-          padding: 0, // Ensure no padding
+          padding: 0,
         }}
       >
-        <div className="">
-            <div className="text-9xl">
-          PAVAN
-          <h1 className="text-xl mt-5 font-extralight">Clearing The Smoke With Data.</h1>
-        </div>
-        
-        </div>
-        
+        <div className="text-9xl font-yatra">पवन</div>
+        <div className="font-protest text-8xl text-light-green ">mitra</div>
       </div>
     </div>
   );
 };
-

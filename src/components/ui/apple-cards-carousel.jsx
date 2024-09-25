@@ -1,21 +1,9 @@
-"use client";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  createContext,
-  useContext,
-} from "react";
-import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconX,
-} from "@tabler/icons-react";
+import React, { useEffect, useRef, useState, createContext, useContext } from "react";
+import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-
 
 export const CarouselContext = createContext({
   onCardClose: () => {},
@@ -69,7 +57,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
   };
 
   const isMobile = () => {
-    return typeof window !== "undefined" && window.innerWidth < 768;
+    return window && window.innerWidth < 768;
   };
 
   return (
@@ -80,19 +68,23 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
           ref={carouselRef}
           onScroll={checkScrollability}
         >
-          <div className={cn(
-            "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
-          )}></div>
+          <div
+            className={cn(
+              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
+            )}
+          ></div>
 
-          <div className={cn(
-            "flex flex-row justify-start gap-4 pl-0",
-            "max-w-7xl mx-auto"
-          )}>
+          <div
+            className={cn(
+              "flex flex-row justify-start gap-4 pl-4",
+              "max-w-7xl mx-auto"
+            )}
+          >
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 * index, ease: "easeOut" } }}
-                key={index}
+                animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 * index, ease: "easeOut", once: true } }}
+                key={"card" + index}
                 className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
               >
                 {item}
@@ -121,7 +113,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
   );
 };
 
-export const Card = ({ card = {}, index, layout = false }) => {
+export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { onCardClose } = useContext(CarouselContext);
@@ -170,7 +162,7 @@ export const Card = ({ card = {}, index, layout = false }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               ref={containerRef}
-              layoutId={layout ? `card-${card.cityName || 'default'}` : undefined}
+              layoutId={layout ? `card-${card.title}` : undefined}
               className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
               <button
@@ -180,24 +172,24 @@ export const Card = ({ card = {}, index, layout = false }) => {
                 <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
               </button>
               <motion.p
-                layoutId={layout ? `cityName-${card.cityName || 'default'}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
-              >
-                {card.cityName || 'City Name'}
-              </motion.p>
-              <motion.p
-                layoutId={layout ? `title-${card.title || 'default'}` : undefined}
+                layoutId={layout ? `title-${card.title}` : undefined}
                 className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white"
               >
-                {card.title || 'Title'}
+                {card.title}
               </motion.p>
-              <div className="py-10">{card.content || 'Content goes here'}</div>
+              <div className="py-10">{card.content}</div>
+              <a
+                href={`http://localhost:3000/${card.cityName}`}
+                className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                More Details
+              </a>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
       <motion.button
-        layoutId={layout ? `card-${card.cityName || 'default'}` : undefined}
+        layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[30rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
@@ -206,21 +198,15 @@ export const Card = ({ card = {}, index, layout = false }) => {
         />
         <div className="relative z-40 p-8">
           <motion.p
-            layoutId={layout ? `cityName-${card.cityName || 'default'}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
-          >
-            {card.cityName || 'City Name'}
-          </motion.p>
-          <motion.p
-            layoutId={layout ? `title-${card.title || 'default'}` : undefined}
+            layoutId={layout ? `title-${card.title}` : undefined}
             className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
           >
-            {card.title || 'Title'}
+            {card.title}
           </motion.p>
         </div>
         <BlurImage
-          src={card.src || '/delhi.png'}
-          alt={card.title || 'Default Image'}
+          src={card.src}
+          alt={card.title}
           fill
           className="object-cover absolute z-10 inset-0"
         />
@@ -229,14 +215,7 @@ export const Card = ({ card = {}, index, layout = false }) => {
   );
 };
 
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}) => {
+export const BlurImage = ({ height, width, src, className, alt, ...rest }) => {
   const [isLoading, setLoading] = useState(true);
   return (
     <Image
@@ -248,7 +227,7 @@ export const BlurImage = ({
       loading="lazy"
       decoding="async"
       blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt || "Background of a beautiful view"}
+      alt={alt ? alt : "Background of a beautiful view"}
       {...rest}
     />
   );
