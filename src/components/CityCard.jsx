@@ -23,12 +23,12 @@ export function CityCard() {
 
   return (
     <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-poppins">
+      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-200 font-poppins">
         Get to know your cities AQI.
       </h2>
       <Carousel items={cards} />
       {selectedIndex !== null && (
-        <div className="mt-10 p-6 bg-[#F5F5F7] dark:bg-neutral-800 rounded-3xl">
+        <div className="mt-10 p-6 bg-neutral-800 rounded-3xl">
           <h3 className="text-2xl font-bold mb-4">{selectedCard.title}</h3>
           <p className="text-base mb-4">
             <strong>AQI:</strong> {selectedCard.aqi || 'Data not available'}
@@ -62,13 +62,14 @@ const DummyContent = () => {
             className="relative p-8 md:p-14 rounded-3xl mb-4 max-h-62 overflow-hidden "
             style={{ backgroundImage: 'url(/delhi.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} // Set your background image here
           >
-            <div className="absolute inset-0 bg-white/30 dark:bg-neutral-900/30 backdrop-blur-md"></div>
+            <div className="absolute inset-0 bg-neutral-900/30 backdrop-blur-md"></div>
             <div className="relative z-10 p-8">
-              <p className="text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                <span className="font-bold text-neutral-700 dark:text-neutral-200">
+              <p className="text-neutral-100 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                <span className="font-bold text-neutral-100">
                   Discover more about each city.
                 </span>{" "}
                 <br />
+                
                 Explore the AQI and learn more about various cities. From bustling
                 metropolises to serene towns, get all the information you need to
                 stay informed.
