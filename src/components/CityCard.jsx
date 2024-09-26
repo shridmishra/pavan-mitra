@@ -23,7 +23,7 @@ export function CityCard() {
 
   return (
     <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-sans">
+      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-poppins">
         Get to know your cities AQI.
       </h2>
       <Carousel items={cards} />
@@ -64,7 +64,7 @@ const DummyContent = () => {
           >
             <div className="absolute inset-0 bg-white/30 dark:bg-neutral-900/30 backdrop-blur-md"></div>
             <div className="relative z-10 p-8">
-              <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <p className="text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
                 <span className="font-bold text-neutral-700 dark:text-neutral-200">
                   Discover more about each city.
                 </span>{" "}
@@ -94,15 +94,15 @@ const data = [
   },
   {
     title: "Mumbai AQI",
-    src: "/delhi.png",
+    src: "/mumbai.jpg",
     aqi: 120,
     cityDetails: "The current AQI in Mumbai is 120, which is considered unhealthy for sensitive groups.",
     connect: "Consider reducing prolonged outdoor exertion and check air quality updates regularly.",
     content: <DummyContent cityName="mumbai" />,
   },
   {
-    title: "Bengaluru AQI",
-    src: "/delhi.png",
+    title: "Kanpur AQI",
+    src: "/kanpur.jpeg",
     aqi: 90,
     cityDetails: "The current AQI in Bengaluru is 90, which is considered acceptable.",
     connect: "Air quality is generally good, but remain aware of any changes in conditions.",
@@ -110,7 +110,7 @@ const data = [
   },
   {
     title: "Chennai AQI",
-    src: "/delhi.png",
+    src: "/chennai.jpg",
     aqi: 150,
     cityDetails: "The current AQI in Chennai is 150, which is considered unhealthy.",
     connect: "Try to limit time spent outdoors and use air purifiers if necessary.",
@@ -132,28 +132,6 @@ const data = [
     connect: "Be cautious if you have respiratory issues and try to stay indoors during peak pollution hours.",
     content: <DummyContent cityName="hyderabad" />,
   },
-  {
-    title: "Pune AQI",
-    src: "/delhi.png",
-    aqi: 95,
-    cityDetails: "The current AQI in Pune is 95, which is considered acceptable.",
-    connect: "Air quality is good, but it's always a good idea to stay informed about any changes.",
-    content: <DummyContent cityName="pune" />,
-  },
-  {
-    title: "Ahmedabad AQI",
-    src: "/delhi.png",
-    aqi: 130,
-    cityDetails: "The current AQI in Ahmedabad is 130, which is considered unhealthy for sensitive groups.",
-    connect: "Limit outdoor activities and keep track of air quality updates.",
-    content: <DummyContent cityName="ahmedabad" />,
-  },
-  {
-    title: "Jaipur AQI",
-    src: "/delhi.png",
-    aqi: 140,
-    cityDetails: "The current AQI in Jaipur is 140, which is considered unhealthy.",
-    connect: "Take precautions to reduce exposure and ensure good air quality at home.",
-    content: <DummyContent cityName="jaipur" />,
-  },
+  
+
 ];

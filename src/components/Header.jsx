@@ -18,13 +18,15 @@ export const Header = () => {
 
   const textOpacity = Math.min(1, scrollY / 300);
   const textPosition = Math.min(scrollY / 1.5, 150);
-  const bgColor = textOpacity === 1 ? "bg-green-500" : "bg-white";
+  const bgColor = scrollY > 200 ? "bg-green-500" : "bg-white";
+  
+  const showMitraThreshold = 200;
 
   return (
     <div className={`relative h-screen transition-colors duration-500 ${bgColor}`}>
-      <div className="text-8xl z-20 p-4 opacity-1 flex justify-between font-mono">
-        <div>Clearing <br />The <br /> Smoke</div>
-        <div className="mt-5">With <br />Data.</div>
+      <div className="text-9xl z-20 py-96 px-10 flex justify-between font-yatra text-slate-900" style={{ opacity: scrollY < showMitraThreshold ? 1 : 0 }}>
+        <div>Clearing the Smoke With Data</div>
+       
       </div>
 
       <img
@@ -41,16 +43,15 @@ export const Header = () => {
       <div
         className="absolute inset-0 flex flex-col items-center justify-center font-bold"
         style={{
-          opacity: textOpacity,
+          opacity: scrollY > showMitraThreshold ? 1 : 0,
           transform: `translateY(${textPosition}px)`,
           zIndex: 5,
-         
           transition: "opacity 0.3s ease, transform 0.3s ease",
           padding: 0,
         }}
       >
         <div className="text-9xl font-yatra">पवन</div>
-        <div className="font-protest text-8xl text-light-green ">mitra</div>
+        <div className="font-yatra text-8xl text-green-100">MITRA</div>
       </div>
     </div>
   );

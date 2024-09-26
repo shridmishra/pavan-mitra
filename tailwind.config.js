@@ -19,6 +19,7 @@ module.exports = {
       fontFamily: {
         yatra: ['Yatra One', 'sans-serif'],
         protest: ['"Protest Guerrilla"', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
