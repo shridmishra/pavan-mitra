@@ -6,9 +6,9 @@ import React from 'react';
 import AQIDataDisplay from '../../../components/AQIDataDisplay';
 
 const ChennaiPage = async () => {
-  const { currentAQI, futureAQI } = await getAQIData('delhi');
+  const { currentAQI, futureAQI } = await getAQIData('kolkata');
 
-  return <AQIDataDisplay currentAQI={currentAQI} futureAQI={futureAQI} city="delhi" />;
+  return <AQIDataDisplay currentAQI={currentAQI} futureAQI={futureAQI} city="kolkata" />;
 };
 
 export default ChennaiPage;

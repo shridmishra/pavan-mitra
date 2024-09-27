@@ -1,0 +1,10 @@
+{
+  "delhi": [],
+  "mumbai": [
+    {
+      "date": "2024-09-27",
+      "aqi": 17,
+      "dominantPol": "pm25"
+    }
+  ]
+}

@@ -1,14 +1,14 @@
-// src/app/delhi.js
+// app/mumbai/page.js
+"use client";
 
+import { getAQIData } from '../../../lib/getAQIData';
 import React from 'react';
+import AQIDataDisplay from '../../../components/AQIDataDisplay';
 
-const DelhiPage = () => {
-  return (
-    <div className="min-h-screen bg-white text-black p-8">
-      <h1 className="text-4xl font-bold">Welcome to Delhi Page</h1>
-      <p className="mt-4 text-lg">This is the content for the Delhi page.</p>
-    </div>
-  );
+const MumbaiPage = async () => {
+  const { currentAQI, futureAQI } = await getAQIData('mumbai');
+
+  return <AQIDataDisplay currentAQI={currentAQI} futureAQI={futureAQI} city="Mumbai" />;
 };
 
-export default DelhiPage;
+export default MumbaiPage;

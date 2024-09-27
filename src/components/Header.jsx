@@ -28,7 +28,7 @@ export const Header = () => {
         className="z-20 py-96 px-10 flex justify-between font-yatra text-slate-900"
         style={{ opacity: scrollY < showMitraThreshold ? 1 : 0 }}
       >
-        <div className="text-7xl lg:text-9xl md:text-8xl">Clearing the Smoke With Data</div>
+        <div className="text-6xl  lg:text-9xl md:text-8xl">Clearing the Smoke With Data</div>
       </div>
 
       <img
