@@ -1,7 +1,6 @@
 // components/AQIDataDisplay.js
-import React, { useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Bar } from 'react-chartjs-2';
+import React from 'react';
+import { Line, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,7 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 
-// Register the necessary components
+// Register the necessary chart components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,10 +26,8 @@ ChartJS.register(
 );
 
 const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
-  const labels = futureAQI.map(day => day.date);
-  const aqiData = futureAQI.map(day => day.aqi);
-  const pm25Data = futureAQI.map(day => day.pm25);
-  const pm10Data = futureAQI.map(day => day.pm10);
+  const labels = futureAQI.map(day => day.date); // Dates for future AQI predictions
+  const aqiData = futureAQI.map(day => day.aqi); // Predicted AQI values
 
   const aqiChartData = {
     labels,
@@ -40,20 +37,6 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
         data: aqiData,
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true,
-      },
-      {
-        label: 'Predicted PM2.5',
-        data: pm25Data,
-        borderColor: 'rgba(255, 99, 132, 1)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        fill: true,
-      },
-      {
-        label: 'Predicted PM10',
-        data: pm10Data,
-        borderColor: 'rgba(255, 205, 86, 1)',
-        backgroundColor: 'rgba(255, 205, 86, 0.2)',
         fill: true,
       },
     ],
@@ -67,17 +50,14 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
         data: aqiData,
         backgroundColor: 'rgba(75, 192, 192, 1)',
       },
-      {
-        label: 'Predicted PM2.5',
-        data: pm25Data,
-        backgroundColor: 'rgba(255, 99, 132, 1)',
-      },
-      {
-        label: 'Predicted PM10',
-        data: pm10Data,
-        backgroundColor: 'rgba(255, 205, 86, 1)',
-      },
     ],
+  };
+
+  // Determine background color class based on AQI level
+  const getAQIColorClass = (aqi) => {
+    if (aqi <= 50) return 'bg-green-500'; // Good
+    if (aqi <= 100) return 'bg-yellow-500'; // Moderate
+    return 'bg-red-500'; // Unhealthy
   };
 
   return (
@@ -90,10 +70,12 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
         {currentAQI ? (
           <div className="text-lg">
             <p>Date: <span className="font-semibold">{currentAQI.date}</span></p>
-            <p>AQI: <span className="font-semibold">{currentAQI.aqi}</span></p>
-            <p>PM2.5: <span className="font-semibold">{currentAQI.pm25} µg/m³</span></p>
-            <p>PM10: <span className="font-semibold">{currentAQI.pm10} µg/m³</span></p>
-            <p>Dominant Pollutant: <span className="font-semibold">{currentAQI.dominantPol}</span></p>
+
+            {/* AQI and Dominant Pollutant in colored div */}
+            <div className={`p-4 mt-4 text-3xl rounded-lg shadow-md ${getAQIColorClass(currentAQI.aqi)}`}>
+              <p>AQI: <span className="font-semibold">{currentAQI.aqi}</span></p>
+              <p>Dominant Pollutant: <span className="font-semibold">PM 2.5</span></p>
+            </div>
           </div>
         ) : (
           <p>Error fetching current data for {city}</p>
@@ -101,10 +83,10 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
       </div>
 
       {/* Chart for Future Predictions */}
-      <div className="  justify-around  mb-6 lg:flex">
-        <div className="w-1/2 p-4">
-          <h2 className="text-2xl font-semibold mb-4">Predicted AQI & PM Levels (Line Chart)</h2>
-          <div className="bg-gray-800 rounded-lg p-4 shadow-md ">
+      <div className="justify-around mb-6 lg:flex">
+        <div className="w-full p-4">
+          <h2 className="text-2xl font-semibold mb-4">Predicted AQI (Line Chart)</h2>
+          <div className="bg-gray-800 rounded-lg p-4 shadow-md">
             <Line
               data={aqiChartData}
               options={{
@@ -115,14 +97,22 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
                     labels: { color: 'white', font: { size: 16 } },
                   },
                 },
+                scales: {
+                  x: {
+                    ticks: { color: 'white' },
+                  },
+                  y: {
+                    ticks: { color: 'white' },
+                  },
+                },
               }}
               height={400}
             />
           </div>
         </div>
 
-        <div className="w-1/2 p-4">
-          <h2 className="text-2xl font-semibold mb-4">Predicted AQI & PM Levels (Bar Chart)</h2>
+        <div className="w-full p-4">
+          <h2 className="text-2xl font-semibold mb-4">Predicted AQI (Bar Chart)</h2>
           <div className="bg-gray-800 rounded-lg p-4 shadow-md">
             <Bar
               data={barChartData}
@@ -132,6 +122,14 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
                 plugins: {
                   legend: {
                     labels: { color: 'white', font: { size: 16 } },
+                  },
+                },
+                scales: {
+                  x: {
+                    ticks: { color: 'white' },
+                  },
+                  y: {
+                    ticks: { color: 'white' },
                   },
                 },
               }}
@@ -154,7 +152,7 @@ const AQIDataDisplay = ({ currentAQI, futureAQI, city }) => {
           <li className="text-md">Avoid using vehicles; opt for public transport.</li>
           <li className="text-md">Plant trees and maintain green spaces.</li>
         </ul>
-        <p className="text-md">Health Effects: High AQI can lead to respiratory problems, irritation of the eyes, nose, and throat, and can affect heart health.</p>
+        <p className="text-lg font-semibold">Health Effects: High AQI can lead to respiratory problems, irritation of the eyes, nose, and throat, and can affect heart health.</p>
       </div>
 
       {/* Footer Area */}

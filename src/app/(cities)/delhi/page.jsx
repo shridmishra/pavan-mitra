@@ -8,7 +8,7 @@ import AQIDataDisplay from '../../../components/AQIDataDisplay';
 const ChennaiPage = async () => {
   const { currentAQI, futureAQI } = await getAQIData('delhi');
 
-  return <AQIDataDisplay currentAQI={currentAQI} futureAQI={futureAQI} city="delhi" />;
+  return <AQIDataDisplay currentAQI={currentAQI} futureAQI={futureAQI} city="Delhi" />;
 };
 
 export default ChennaiPage;

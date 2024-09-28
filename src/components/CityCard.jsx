@@ -95,22 +95,6 @@ const data = [
     cityName: "chennai", // City name used for routing
     content: <DummyContent cityName="chennai" />,
   },
-  {
-    title: "Kolkata AQI",
-    src: "/delhi.png",
-    aqi: 160,
-    cityDetails: "The current AQI in Kolkata is 160, which is considered unhealthy.",
-    connect: "Avoid strenuous activities and ensure you have a clean air environment at home.",
-    cityName: "kolkata", // City name used for routing
-    content: <DummyContent cityName="kolkata" />,
-  },
-  {
-    title: "Hyderabad AQI",
-    src: "/delhi.png",
-    aqi: 110,
-    cityDetails: "The current AQI in Hyderabad is 110, which is considered unhealthy for sensitive groups.",
-    connect: "Be cautious if you have respiratory issues and try to stay indoors during peak pollution hours.",
-    cityName: "hyderabad", // City name used for routing
-    content: <DummyContent cityName="hyderabad" />,
-  },
+
+
 ];
